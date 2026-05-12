@@ -13,7 +13,7 @@ import {useState} from "react";
 
 export default function Home() {
     // variável de estado
-    const [name, setName] = useState("mundo!");
+    const [name, setName] = useState("Pedro Portinha Nº31718 :)!");
     const [input, setInput] = useState("");
 
     // função
