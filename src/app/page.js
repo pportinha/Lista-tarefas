@@ -1,43 +1,39 @@
 'use client';
 
 import styles from "./page.module.css";
-import {useState} from "react";
-
-/*
-    TODO
-    Mensagem Olá só é alterada quando se clica num botão
-    Função do botão é ir buscar o que está no input e colocar na mensagem Olá
-
-    É NECESSÁRIO CRIAR UMA SEGUNDA VARIÁVEL DE ESTADO
- */
+import { useState } from "react";
 
 export default function Home() {
-    // variável de estado
     const [name, setName] = useState("Pedro Portinha Nº31718 :)!");
     const [input, setInput] = useState("");
 
-    // função
-    const atualizaMensagemOla =
-        () => { setName(input)}
+    const atualizarMensagem = () => {
+        if (!input.trim()) return;
+        setName(input);
+        setInput("");
+    };
 
     return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h2>Olá {name}</h2>
+        <div className={styles.container}>
+            <div className={styles.card}>
+                <h2>Olá <span>{name}</span></h2>
 
-          <button className={styles.btnCust} onClick={
-              () => {setName("MUNDO!!!!")}
-          }>
-              Clica em mim ;)
-          </button>
+                <input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Escreve um nome..."
+                />
 
-          <button className={styles.btnCust} onClick={atualizaMensagemOla}>
-              Atualiza mensagem Olá
-          </button>
+                <div className={styles.buttons}>
+                    <button onClick={() => setName("MUNDO!!!!")}>
+                        Mudar para MUNDO
+                    </button>
 
-          <input value={input}
-                 onChange={(evt) => setInput(evt.target.value)} />
-      </main>
-    </div>
-  );
+                    <button onClick={atualizarMensagem}>
+                        Atualizar nome
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
 }
